@@ -1,7 +1,8 @@
 baseURL = '/'
 languageCode = 'zh-CN'
 defaultContentLanguage = 'zh-CN'
-title = 'My New Hugo Site'
+title = '逍遥云梦客'
+theme = 'reimu'
 
 [languages.zh-CN]
   languageName = '简体中文'
