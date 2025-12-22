@@ -1,0 +1,28 @@
+{{- define "main" -}}
+  {{- $section := .Section -}}
+  {{- $sort_config := .Site.Params.sort_order.archive -}}
+  {{- $paginator := (.Paginate (where .Site.RegularPages "Section" $section)).Pages.GroupByDate .Site.Params.yearFormat "desc" -}}
+  {{- if eq $sort_config "weight" -}}
+    {{- $paginator = (.Paginate (where .Site.RegularPages "Section" $section)).Pages.ByWeight -}}
+  {{- else if eq $sort_config "weight-reverse" -}}
+    {{- $paginator = (.Paginate (where .Site.RegularPages "Section" $section)).Pages.ByWeight.Reverse -}}
+  {{- else if eq $sort_config "date" -}}
+    {{- $paginator = (.Paginate (where .Site.RegularPages "Section" $section)).Pages.GroupByDate .Site.Params.yearFormat "asc" -}}
+  {{- else if eq $sort_config "default" -}}
+    {{- $paginator = (.Paginate (where .Site.RegularPages "Section" $section)).Pages -}}
+  {{- end -}}
+  <div
+    class="archives-outer-wrap"
+    data-aos="{{ .Site.Params.animation.options.archive.whole }}"
+  >
+    {{- if .Site.Params.only_show_capsule_in_index -}}
+      {{- if eq .Paginator.PageNumber 1 -}}
+        {{- partialCached "archives.html" . -}}
+      {{- end -}}
+    {{- else -}}
+      {{- partialCached "archives.html" . -}}
+    {{- end -}}
+    {{- partial "list.html" (dict "paginator" $paginator "ctx" .) -}}
+  </div>
+  {{- partial "pagination.html" . -}}
+{{- end -}}

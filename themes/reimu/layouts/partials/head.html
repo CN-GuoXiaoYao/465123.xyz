@@ -146,3 +146,5 @@
 {{- if .Site.Params.player.aplayer.enable -}}
   {{- partial "helpers/css.html" (dict "raw" $css.aplayer "src" (index (partial "helpers/vendorCdn.html" (dict "item" $css.aplayer "ctx" $site)) 0) "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $css.aplayer)) 0)) -}}
 {{- end -}}
+
+<link rel="stylesheet" href="/resources/iconfont/iconfont.css">
