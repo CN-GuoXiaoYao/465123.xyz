@@ -52,7 +52,7 @@
 
 {{- $js := .Site.Data.vendor.js -}}
 {{- $css := .Site.Data.vendor.css -}}
-<!-- icon -->
+<!-- icon - 只加载你的iconfont，不加载FontAwesome -->
 {{- if .Site.Params.icon_font -}}
   <link
     rel="preload"
@@ -61,13 +61,6 @@
     type="font/woff2"
     crossorigin="anonymous"
   />
-{{- else -}}
-  {{- range $css.fontawesome.high_priority -}}
-    {{- partial "helpers/css.html" (dict "raw" . "src" (index (partial "helpers/vendorCdn.html" (dict "item" . "ctx" $site)) 0) "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" .)) 0)) -}}
-  {{- end -}}
-  {{- range $css.fontawesome.low_priority -}}
-    {{- partial "helpers/asyncCss.html" (dict "raw" . "src" (index (partial "helpers/vendorCdn.html" (dict "item" . "ctx" $site)) 0) "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" .)) 0)) -}}
-  {{- end -}}
 {{- end -}}
 <!-- loader -->
 {{- if .Site.Params.preloader.enable -}}
@@ -147,8 +140,9 @@
   {{- partial "helpers/css.html" (dict "raw" $css.aplayer "src" (index (partial "helpers/vendorCdn.html" (dict "item" $css.aplayer "ctx" $site)) 0) "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $css.aplayer)) 0)) -}}
 {{- end -}}
 
-<link rel="stylesheet" href="/resources/iconfont/iconfont.css">
+<!-- 你的自定义iconfont -->
+<link rel="stylesheet" href="/resource/iconfont/iconfont.css">
    
-<!-- 自定义布局 -->
+<!-- 自定义CSS和JS -->
 <link rel="stylesheet" href="/css/custom.css">
 <script src="/js/toc-float.js" defer></script>

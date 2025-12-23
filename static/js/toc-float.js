@@ -4,14 +4,16 @@
   const articleContent = document.querySelector('.article-entry');
   const tocContent = document.querySelector('#TableOfContents');
   
-  if (!articleContent || !tocContent) return;
+  if (!articleContent || !tocContent) {
+    return;
+  }
   
-  // 创建浮动TOC容器
+  // 创建浮动TOC容器 - 使用你的iconfont图标
   const tocFloat = document.createElement('div');
   tocFloat.className = 'toc-float-container';
   tocFloat.innerHTML = `
     <div class="toc-toggle-btn">
-      <i class="iconfont icon-menu"></i>
+      <span class="toc-icon iconfont"></span>
     </div>
     <div class="toc-float-content">
       <h3>目录</h3>
@@ -25,14 +27,6 @@
   const toggleBtn = tocFloat.querySelector('.toc-toggle-btn');
   toggleBtn.addEventListener('click', function() {
     tocFloat.classList.toggle('expanded');
-    
-    // 切换图标
-    const icon = this.querySelector('i');
-    if (tocFloat.classList.contains('expanded')) {
-      icon.className = 'iconfont icon-close';
-    } else {
-      icon.className = 'iconfont icon-menu';
-    }
   });
   
   // 点击目录链接后自动收起
@@ -40,7 +34,6 @@
   tocLinks.forEach(link => {
     link.addEventListener('click', function() {
       tocFloat.classList.remove('expanded');
-      toggleBtn.querySelector('i').className = 'iconfont icon-menu';
     });
   });
   
