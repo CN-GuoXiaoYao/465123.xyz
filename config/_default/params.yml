@@ -104,11 +104,6 @@ reimu_cursor:
 icon_font: 5095250
 fontawesome: true
 
-vendor:
-  custom_css:
-    - :iconfont/iconfont.css
-    - /css/custom.css
-
 dark_mode:
   enable: auto # 自动跟随系统
 
