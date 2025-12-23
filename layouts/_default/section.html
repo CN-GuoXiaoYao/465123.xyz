@@ -1,28 +1,63 @@
 {{- define "main" -}}
   {{- $section := .Section -}}
-  {{- $sort_config := .Site.Params.sort_order.archive -}}
-  {{- $paginator := (.Paginate (where .Site.RegularPages "Section" $section)).Pages.GroupByDate .Site.Params.yearFormat "desc" -}}
+  {{- $sort_config := .Site.Params.sort_order.archive | default "date-reverse" -}}
+  {{- $pages := where .Site.RegularPages "Section" $section -}}
+  
+  {{/* 排序逻辑 */}}
   {{- if eq $sort_config "weight" -}}
-    {{- $paginator = (.Paginate (where .Site.RegularPages "Section" $section)).Pages.ByWeight -}}
+    {{- $pages = $pages.ByWeight -}}
   {{- else if eq $sort_config "weight-reverse" -}}
-    {{- $paginator = (.Paginate (where .Site.RegularPages "Section" $section)).Pages.ByWeight.Reverse -}}
+    {{- $pages = $pages.ByWeight.Reverse -}}
   {{- else if eq $sort_config "date" -}}
-    {{- $paginator = (.Paginate (where .Site.RegularPages "Section" $section)).Pages.GroupByDate .Site.Params.yearFormat "asc" -}}
-  {{- else if eq $sort_config "default" -}}
-    {{- $paginator = (.Paginate (where .Site.RegularPages "Section" $section)).Pages -}}
+    {{- $pages = $pages.ByDate -}}
+  {{- else -}}
+    {{- $pages = $pages.ByDate.Reverse -}}
   {{- end -}}
-  <div
-    class="archives-outer-wrap"
-    data-aos="{{ .Site.Params.animation.options.archive.whole }}"
-  >
-    {{- if .Site.Params.only_show_capsule_in_index -}}
-      {{- if eq .Paginator.PageNumber 1 -}}
-        {{- partialCached "archives.html" . -}}
-      {{- end -}}
-    {{- else -}}
-      {{- partialCached "archives.html" . -}}
-    {{- end -}}
-    {{- partial "list.html" (dict "paginator" $paginator "ctx" .) -}}
+
+  {{- $paginator := .Paginate $pages -}}
+
+  {{/* 标题区域 */}}
+  <div class="archive-header">
+    <h2 class="archive-title">{{ .Title }}</h2>
+    <span class="archive-count">共 {{ len $pages }} 个</span>
   </div>
+
+  {{/* 网格容器 */}}
+  <div class="reimu-grid-container">
+    {{- range $paginator.Pages -}}
+      <article class="reimu-grid-item" data-aos="zoom-in">
+        <a href="{{ .Permalink }}" class="reimu-grid-link">
+          
+          {{/* 封面图 */}}
+          <div class="reimu-grid-cover">
+            {{- $cover := .Params.cover -}}
+            {{- if not $cover -}}
+               {{- $cover = partial "helpers/randomCover.html" $ -}}
+            {{- end -}}
+            {{- if not $cover -}}
+               {{- $cover = .Site.Params.banner -}}
+            {{- end -}}
+            
+            <img data-src="{{ $cover | relURL }}" class="lazyload" alt="{{ .Title }}">
+          </div>
+
+          {{/* 内容区域 */}}
+          <div class="reimu-grid-info">
+            <h3 class="reimu-grid-title">{{ .Title }}</h3>
+            <p class="reimu-grid-desc">
+              {{- if .Params.description -}}
+                {{ .Params.description }}
+              {{- else if .Summary -}}
+                {{ .Summary | plainify | truncate 50 }}
+              {{- else -}}
+                暂无描述
+              {{- end -}}
+            </p>
+          </div>
+        </a>
+      </article>
+    {{- end -}}
+  </div>
+
   {{- partial "pagination.html" . -}}
 {{- end -}}

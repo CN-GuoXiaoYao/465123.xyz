@@ -102,11 +102,12 @@ reimu_cursor:
     text: ../images/cursor/reimu-cursor-text.png
 
 icon_font: 5095250
-fontawesome: false
+fontawesome: true
 
 vendor:
   custom_css:
     - :iconfont/iconfont.css
+    - /css/custom.css
 
 dark_mode:
   enable: auto # 自动跟随系统
