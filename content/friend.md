@@ -3,7 +3,7 @@ title: "友链"
 ---
 
 ## 我的信息
-{{< friendsLink >}}
+{{% friendsLink %}}
 - **站名**：逍遥云梦客
 - **站长**：郭逍遥
 - **简介**：棋手以身入局，举棋胜天半子
@@ -15,4 +15,4 @@ title: "友链"
 <a href="mailto:3417372945@qq.com"><i class="iconfont icon-email"></i></a>
 
 ## 小伙伴们
-{{< /friendsLink >}}
+{{% /friendsLink %}}
