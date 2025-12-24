@@ -541,11 +541,6 @@ reimu_cursor:
 icon_font: 5095250
 fontawesome: true
 
-vendor:
-  custom_css:
-    - :iconfont/iconfont.css
-    - /css/custom.css
-
 dark_mode:
   enable: auto # 自动跟随系统
 
@@ -782,7 +777,7 @@ FILE: .\layouts\partials\head.html
 
 {{- $js := .Site.Data.vendor.js -}}
 {{- $css := .Site.Data.vendor.css -}}
-<!-- icon -->
+<!-- icon - 只加载你的iconfont，不加载FontAwesome -->
 {{- if .Site.Params.icon_font -}}
   <link
     rel="preload"
@@ -791,13 +786,6 @@ FILE: .\layouts\partials\head.html
     type="font/woff2"
     crossorigin="anonymous"
   />
-{{- else -}}
-  {{- range $css.fontawesome.high_priority -}}
-    {{- partial "helpers/css.html" (dict "raw" . "src" (index (partial "helpers/vendorCdn.html" (dict "item" . "ctx" $site)) 0) "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" .)) 0)) -}}
-  {{- end -}}
-  {{- range $css.fontawesome.low_priority -}}
-    {{- partial "helpers/asyncCss.html" (dict "raw" . "src" (index (partial "helpers/vendorCdn.html" (dict "item" . "ctx" $site)) 0) "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" .)) 0)) -}}
-  {{- end -}}
 {{- end -}}
 <!-- loader -->
 {{- if .Site.Params.preloader.enable -}}
@@ -877,9 +865,10 @@ FILE: .\layouts\partials\head.html
   {{- partial "helpers/css.html" (dict "raw" $css.aplayer "src" (index (partial "helpers/vendorCdn.html" (dict "item" $css.aplayer "ctx" $site)) 0) "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $css.aplayer)) 0)) -}}
 {{- end -}}
 
-<link rel="stylesheet" href="/resources/iconfont/iconfont.css">
+<!-- 你的自定义iconfont -->
+<link rel="stylesheet" href="/resource/iconfont/iconfont.css">
    
-<!-- 自定义布局 -->
+<!-- 自定义CSS和JS -->
 <link rel="stylesheet" href="/css/custom.css">
 <script src="/js/toc-float.js" defer></script>
 
@@ -1074,20 +1063,79 @@ FILE: .\static\css\custom.css
 }
 
 /* ============================================
-   2. 隐藏侧边栏的TOC
+   2. 用你的iconfont覆盖主题图标
    ============================================ */
 
-/* 隐藏sidebar里的TOC区域 */
+/* 顶部导航按钮 - 全部用iconfont */
+#main-nav-toggle:before,
+#nav-rss-link:before,
+#nav-search-btn:before,
+#nav-sun-btn:before,
+#nav-moon-btn:before {
+  font-family: "iconfont" !important;
+}
+
+/* 菜单按钮（手机） */
+#main-nav-toggle:before {
+  content: "\e602" !important;  /* 列表 */
+}
+
+/* RSS按钮 */
+#nav-rss-link:before {
+  content: "\e603" !important;  /* RSS */
+}
+
+/* 搜索按钮 */
+#nav-search-btn:before {
+  content: "\e604" !important;  /* 搜索 */
+}
+
+/* 太阳（亮色模式） */
+#nav-sun-btn:before {
+  content: "\e601" !important;  /* 烈日 */
+  font-weight: normal !important;
+}
+
+/* 月亮（暗色模式） */
+#nav-moon-btn:before {
+  content: "\e8a2" !important;  /* 月亮 */
+  font-weight: normal !important;
+}
+
+/* 隐藏半圆按钮（自动模式） */
+#nav-circle-half-stroke-btn {
+  display: none !important;
+}
+
+/* 社交图标 - 用你的iconfont */
+.icon-email:before {
+  content: "\e856" !important;  /* email-fill */
+}
+
+.icon-github:before {
+  content: "\e607" !important;  /* githublogo */
+}
+
+.icon-youtube:before {
+  content: "\e84b" !important;  /* youtube */
+}
+
+.icon-bilibili:before {
+  content: "\e606" !important;  /* bilibili */
+}
+
+/* ============================================
+   3. 隐藏侧边栏的TOC
+   ============================================ */
+
 .sidebar-toc-sidebar {
   display: none !important;
 }
 
-/* 隐藏TOC切换按钮 */
 .sidebar-toc-btn {
   display: none !important;
 }
 
-/* 确保侧边栏正常显示其他内容 */
 .sidebar-common-sidebar {
   display: block !important;
 }
@@ -1097,10 +1145,9 @@ FILE: .\static\css\custom.css
 }
 
 /* ============================================
-   3. 右侧浮动TOC
+   4. 右侧浮动TOC
    ============================================ */
 
-/* TOC容器 - 固定在右下角 */
 .toc-float-container {
   position: fixed;
   bottom: 80px;
@@ -1109,7 +1156,6 @@ FILE: .\static\css\custom.css
   max-width: 300px;
 }
 
-/* TOC折叠按钮 - 使用Unicode字符 */
 .toc-toggle-btn {
   position: absolute;
   top: 0;
@@ -1125,7 +1171,7 @@ FILE: .\static\css\custom.css
   justify-content: center;
   transition: all 0.3s ease;
   color: white;
-  font-size: 24px;
+  font-size: 20px;
   z-index: 2;
   user-select: none;
 }
@@ -1135,14 +1181,23 @@ FILE: .\static\css\custom.css
   transform: scale(1.1);
 }
 
-/* 图标样式 */
-.toc-icon {
+/* TOC按钮图标 - 用你的左右箭头 */
+.toc-toggle-btn .toc-icon {
+  font-family: "iconfont" !important;
+  font-size: 20px;
   display: block;
   line-height: 1;
-  font-family: Arial, sans-serif;
 }
 
-/* TOC内容面板 */
+.toc-toggle-btn .toc-icon::before {
+  content: "\e605";  /* 左右箭头 */
+}
+
+/* 展开时换图标 */
+.toc-float-container.expanded .toc-toggle-btn .toc-icon::before {
+  content: "\e608";  /* 另一个左右箭头 */
+}
+
 .toc-float-content {
   position: absolute;
   bottom: 0;
@@ -1161,14 +1216,12 @@ FILE: .\static\css\custom.css
   transition: all 0.3s ease;
 }
 
-/* 展开状态 */
 .toc-float-container.expanded .toc-float-content {
   opacity: 1;
   visibility: visible;
   transform: translateX(0);
 }
 
-/* TOC样式 */
 .toc-float-content h3 {
   margin: 0 0 12px 0;
   font-size: 16px;
@@ -1204,19 +1257,16 @@ FILE: .\static\css\custom.css
   background: var(--red-6);
 }
 
-/* 当前激活的目录项 */
 .toc-float-content .active > a {
   color: var(--red-1);
   background: var(--red-6);
   font-weight: 600;
 }
 
-/* 子目录缩进 */
 .toc-float-content ul ul {
   padding-left: 16px;
 }
 
-/* 滚动条样式 */
 .toc-float-content::-webkit-scrollbar {
   width: 6px;
 }
@@ -1235,7 +1285,6 @@ FILE: .\static\css\custom.css
   background: var(--red-2);
 }
 
-/* 小屏幕上TOC全宽 */
 @media (max-width: 768px) {
   .toc-float-container {
     right: 10px;
@@ -1249,7 +1298,7 @@ FILE: .\static\css\custom.css
 }
 
 /* ============================================
-   4. 深色模式适配
+   5. 深色模式适配
    ============================================ */
 
 [data-theme="dark"] .reimu-grid-item {
@@ -1275,18 +1324,15 @@ FILE: .\static\js\toc-float.js
   const tocContent = document.querySelector('#TableOfContents');
   
   if (!articleContent || !tocContent) {
-    console.log('TOC: 未找到文章内容或目录');
     return;
   }
   
-  console.log('TOC: 检测到文章页面，创建浮动TOC');
-  
-  // 创建浮动TOC容器 - 使用Unicode字符代替iconfont
+  // 创建浮动TOC容器 - 使用你的iconfont图标
   const tocFloat = document.createElement('div');
   tocFloat.className = 'toc-float-container';
   tocFloat.innerHTML = `
     <div class="toc-toggle-btn">
-      <span class="toc-icon">☰</span>
+      <span class="toc-icon iconfont"></span>
     </div>
     <div class="toc-float-content">
       <h3>目录</h3>
@@ -1295,20 +1341,11 @@ FILE: .\static\js\toc-float.js
   `;
   
   document.body.appendChild(tocFloat);
-  console.log('TOC: 浮动TOC已添加到页面');
   
   // 点击按钮展开/收起
   const toggleBtn = tocFloat.querySelector('.toc-toggle-btn');
   toggleBtn.addEventListener('click', function() {
     tocFloat.classList.toggle('expanded');
-    
-    // 切换图标 - 使用Unicode字符
-    const icon = this.querySelector('.toc-icon');
-    if (tocFloat.classList.contains('expanded')) {
-      icon.textContent = '✕'; // 关闭图标
-    } else {
-      icon.textContent = '☰'; // 菜单图标
-    }
   });
   
   // 点击目录链接后自动收起
@@ -1316,7 +1353,6 @@ FILE: .\static\js\toc-float.js
   tocLinks.forEach(link => {
     link.addEventListener('click', function() {
       tocFloat.classList.remove('expanded');
-      toggleBtn.querySelector('.toc-icon').textContent = '☰';
     });
   });
   
@@ -16811,12 +16847,12 @@ FILE: .\themes\reimu\data\friends.yml
 - name: 郭逍遥
   url: https://465123.xyz/
   desc: 站长
-  image: ../avatar/guoxiaoyao.ico
+  image: /static/resource/avatar/guoxiaoyao.ico
 
 - name: D-Sketon
   url: https://d-sketon.github.io/
   desc: Reimu 主题作者
-  image: ../avatar/D-Sketon.ico
+  image: /static/resource/avatar/D-Sketon.ico
 
 ==================================================
 FILE: .\themes\reimu\data\vendor.yml

@@ -34,7 +34,7 @@ description: "棋手以身入局，举棋胜天半子"
 subtitle: "逍遥云梦客" 
 
 banner: "images/banner.webp"
-avatar: "../avatar/guoxiaoyao.ico"
+avatar: "/resource/avatar/guoxiaoyao.ico"
 
 # 文章配置
 toc: true # 开启目录
