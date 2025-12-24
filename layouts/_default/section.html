@@ -32,9 +32,6 @@
           <div class="reimu-grid-cover">
             {{- $cover := .Params.cover -}}
             {{- if not $cover -}}
-               {{- $cover = partial "helpers/randomCover.html" . -}}
-            {{- end -}}
-            {{- if not $cover -}}
                {{- $cover = .Site.Params.banner -}}
             {{- end -}}
             
