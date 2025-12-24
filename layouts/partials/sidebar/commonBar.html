@@ -1,7 +1,7 @@
 {{- $params := .Site.Params -}}
 <div class="sidebar-author">
   <img
-    data-src="/{{ .Site.Params.avatar }}"
+    data-src="{{ .Site.Params.avatar | relURL }}"
     data-sizes="auto"
     alt="{{ .Site.Params.author }}"
     class="lazyload"
