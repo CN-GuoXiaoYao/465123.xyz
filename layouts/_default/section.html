@@ -15,6 +15,7 @@
   {{- end -}}
 
   {{- $paginator := .Paginate $pages -}}
+  {{- $ctx := . -}}
 
   {{/* 标题区域 */}}
   <div class="archive-header">
@@ -32,7 +33,10 @@
           <div class="reimu-grid-cover">
             {{- $cover := .Params.cover -}}
             {{- if not $cover -}}
-               {{- $cover = .Site.Params.banner -}}
+               {{- $cover = partial "helpers/randomCover.html" $ctx -}}
+            {{- end -}}
+            {{- if not $cover -}}
+               {{- $cover = $ctx.Site.Params.banner -}}
             {{- end -}}
             
             <img data-src="{{ $cover | relURL }}" class="lazyload" alt="{{ .Title }}">
