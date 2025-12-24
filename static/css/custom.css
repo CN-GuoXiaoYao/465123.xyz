@@ -178,37 +178,54 @@
   content: "\e606" !important;  /* bilibili */
 }
 
-/* 统一所有社交图标大小 */
-.sidebar-social-icon a, 
-.my-friend-info-box ul li a i.iconfont {
-    width: 32px !important;
-    height: 32px !important;
-    font-size: 22px !important; /* 图标本体大小 */
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    vertical-align: middle;
-    transition: all 0.3s;
+/* ============================================
+   2.5 统一社交图标大小
+   ============================================ */
+
+/* 侧边栏社交图标统一大小 */
+.sidebar-social-icon {
+  width: 32px !important;
+  height: 32px !important;
+  font-size: 20px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
-/* 页面中间列表的图标间距调整 */
-.my-friend-info-box ul li a {
-    text-decoration: none !important;
-    margin-right: 5px;
+.sidebar-social-icon::before {
+  font-size: 20px !important;
+}
+
+/* 友链页面社交图标 */
+.my-friend-info-box .iconfont {
+  font-size: 20px !important;
+  width: 32px !important;
+  height: 32px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 /* ============================================
-   3. 隐藏侧边栏的TOC
+   3. 隐藏侧边栏的TOC切换按钮
    ============================================ */
 
+/* 隐藏TOC区域 */
 .sidebar-toc-sidebar {
   display: none !important;
 }
 
+/* 隐藏TOC切换按钮 - 关键！ */
 .sidebar-toc-btn {
   display: none !important;
 }
 
+/* 隐藏导航切换按钮 */
+.sidebar-common-btn {
+  display: none !important;
+}
+
+/* 确保侧边栏正常显示 */
 .sidebar-common-sidebar {
   display: block !important;
 }
@@ -218,12 +235,12 @@
 }
 
 /* ============================================
-   4. 右侧浮动TOC
+   4. 右上角浮动TOC
    ============================================ */
 
 .toc-float-container {
   position: fixed;
-  bottom: 80px;
+  top: 80px;  /* 改成top，放在右上角 */
   right: 20px;
   z-index: 999;
   max-width: 300px;
@@ -273,7 +290,7 @@
 
 .toc-float-content {
   position: absolute;
-  bottom: 0;
+  top: 0;  /* 改成top: 0，从上往下展开 */
   right: 0;
   background: var(--color-wrap);
   border-radius: 12px;
@@ -361,7 +378,7 @@
 @media (max-width: 768px) {
   .toc-float-container {
     right: 10px;
-    bottom: 70px;
+    top: 70px;
   }
   
   .toc-float-content {
@@ -384,31 +401,4 @@
 
 [data-theme="dark"] .toc-float-content {
   box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-}
-
-/* =============================================
-    6. 友链样式
-   ============================================= */
-
-/* 友链页本站信息美化 */
-.my-friend-info-box {
-    background: var(--color-wrap) !important;
-    padding: 25px !important;
-    border-radius: 12px !important;
-    margin-bottom: 40px !important;
-    line-height: 1.8 !important; /* 让文字散开 */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
-    border-left: 5px solid var(--red-1) !important; /* 加入红条装饰 */
-}
-
-/* 让每行信息都有间距 */
-.my-friend-info-box p, 
-.my-friend-info-box div {
-    margin-bottom: 12px !important;
-}
-
-/* 让“名称：”这类加粗文字颜色好看点 */
-.my-friend-info-box strong {
-    color: var(--red-1) !important;
-    margin-right: 8px !important;
 }
