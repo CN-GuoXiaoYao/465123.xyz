@@ -46,17 +46,7 @@
     });
   });
   
-  // 回到顶部
-  const backToTop = tocFloat.querySelector('.back-to-top-custom');
-  if (backToTop) {
-    backToTop.addEventListener('click', function() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-  }
-  
+
   // 滚动监听 - 高亮当前章节
   const headings = document.querySelectorAll('.article-entry h1, .article-entry h2, .article-entry h3, .article-entry h4, .article-entry h5, .article-entry h6');
   
