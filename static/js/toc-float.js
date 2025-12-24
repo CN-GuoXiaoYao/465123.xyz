@@ -1,4 +1,4 @@
-// 浮动可折叠目录（TOC）- 只在文章页执行
+// 浮动标签式TOC + 回到顶部
 (function() {
   // 检查是否在文章页
   const isPostPage = document.body.classList.contains('post-type') || 
@@ -16,22 +16,21 @@
     return;
   }
   
-  // 创建浮动TOC容器
+  // 创建浮动TOC容器 - 标签式
   const tocFloat = document.createElement('div');
   tocFloat.className = 'toc-float-container';
   tocFloat.innerHTML = `
-    <div class="toc-toggle-btn">
-      <span class="toc-icon iconfont"></span>
-    </div>
+    <div class="toc-toggle-btn">目录</div>
     <div class="toc-float-content">
       <h3>目录</h3>
       ${tocContent.innerHTML}
     </div>
+    <div class="back-to-top-custom"></div>
   `;
   
   document.body.appendChild(tocFloat);
   
-  // 点击按钮展开/收起
+  // 点击标签展开/收起
   const toggleBtn = tocFloat.querySelector('.toc-toggle-btn');
   if (toggleBtn) {
     toggleBtn.addEventListener('click', function() {
@@ -40,12 +39,23 @@
   }
   
   // 点击目录链接后自动收起
-  const tocLinks = tocFloat.querySelectorAll('a');
+  const tocLinks = tocFloat.querySelectorAll('.toc-float-content a');
   tocLinks.forEach(link => {
     link.addEventListener('click', function() {
       tocFloat.classList.remove('expanded');
     });
   });
+  
+  // 回到顶部
+  const backToTop = tocFloat.querySelector('.back-to-top-custom');
+  if (backToTop) {
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
   
   // 滚动监听 - 高亮当前章节
   const headings = document.querySelectorAll('.article-entry h1, .article-entry h2, .article-entry h3, .article-entry h4, .article-entry h5, .article-entry h6');
