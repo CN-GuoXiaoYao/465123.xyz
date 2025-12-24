@@ -1,6 +1,14 @@
-// 浮动可折叠目录（TOC）
+// 浮动可折叠目录（TOC）- 只在文章页执行
 (function() {
-  // 只在文章页面显示TOC
+  // 检查是否在文章页
+  const isPostPage = document.body.classList.contains('post-type') || 
+                     document.querySelector('.post-type') ||
+                     window.location.pathname.match(/\/posts\/.+\/$/);
+  
+  if (!isPostPage) {
+    return;
+  }
+  
   const articleContent = document.querySelector('.article-entry');
   const tocContent = document.querySelector('#TableOfContents');
   
@@ -8,7 +16,7 @@
     return;
   }
   
-  // 创建浮动TOC容器 - 使用你的iconfont图标
+  // 创建浮动TOC容器
   const tocFloat = document.createElement('div');
   tocFloat.className = 'toc-float-container';
   tocFloat.innerHTML = `
@@ -25,9 +33,11 @@
   
   // 点击按钮展开/收起
   const toggleBtn = tocFloat.querySelector('.toc-toggle-btn');
-  toggleBtn.addEventListener('click', function() {
-    tocFloat.classList.toggle('expanded');
-  });
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', function() {
+      tocFloat.classList.toggle('expanded');
+    });
+  }
   
   // 点击目录链接后自动收起
   const tocLinks = tocFloat.querySelectorAll('a');
@@ -39,6 +49,10 @@
   
   // 滚动监听 - 高亮当前章节
   const headings = document.querySelectorAll('.article-entry h1, .article-entry h2, .article-entry h3, .article-entry h4, .article-entry h5, .article-entry h6');
+  
+  if (headings.length === 0) {
+    return;
+  }
   
   function updateActiveToc() {
     let currentHeading = null;
@@ -78,6 +92,6 @@
   }
   
   window.addEventListener('scroll', throttle(updateActiveToc, 100));
-  updateActiveToc(); // 初始化
+  updateActiveToc();
   
 })();
