@@ -12,6 +12,7 @@ title: "友链"
 <a href="https://github.com/CN-GuoXiaoYao" target="_blank"><i class="iconfont icon-github"></i></a>
 <a href="https://www.youtube.com/@guoxiaoyao8834" target="_blank"><i class="iconfont icon-youtube"></i></a>
 <a href="mailto:3417372945@qq.com"><i class="iconfont icon-email"></i></a>
+{{< /friendsLink >}}
 
 ## 小伙伴们
-{{< /friendsLink >}}
+{{< friendsLink >}}

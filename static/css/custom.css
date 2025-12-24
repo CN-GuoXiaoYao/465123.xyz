@@ -178,22 +178,23 @@
   content: "\e606" !important;  /* bilibili */
 }
 
-/* 统一侧边栏和友链页面社交图标大小 */
-.sidebar-social-icon, .my-friend-info-box a i {
-    width: 32px !important;    /* 容器宽度 */
-    height: 32px !important;   /* 容器高度 */
-    font-size: 24px !important; /* 图标实际大小 */
+/* 统一所有社交图标大小 */
+.sidebar-social-icon a, 
+.my-friend-info-box ul li a i.iconfont {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 22px !important; /* 图标本体大小 */
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
-    margin-right: 8px;         /* 图标间距 */
     vertical-align: middle;
+    transition: all 0.3s;
 }
 
-/* 如果是 SVG 图标也统一 */
-.sidebar-social-icon svg, .my-friend-info-box a i svg {
-    width: 24px !important;
-    height: 24px !important;
+/* 页面中间列表的图标间距调整 */
+.my-friend-info-box ul li a {
+    text-decoration: none !important;
+    margin-right: 5px;
 }
 
 /* ============================================
