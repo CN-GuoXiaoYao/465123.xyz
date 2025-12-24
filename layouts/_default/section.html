@@ -15,7 +15,6 @@
   {{- end -}}
 
   {{- $paginator := .Paginate $pages -}}
-  {{- $ctx := . -}}
 
   {{/* 标题区域 */}}
   <div class="archive-header">
@@ -29,16 +28,9 @@
       <article class="reimu-grid-item" data-aos="zoom-in">
         <a href="{{ .Permalink }}" class="reimu-grid-link">
           
-          {{/* 封面图 */}}
+          {{/* 封面图 - 直接用cover或banner，不用randomCover */}}
           <div class="reimu-grid-cover">
-            {{- $cover := .Params.cover -}}
-            {{- if not $cover -}}
-               {{- $cover = partial "helpers/randomCover.html" $ctx -}}
-            {{- end -}}
-            {{- if not $cover -}}
-               {{- $cover = $ctx.Site.Params.banner -}}
-            {{- end -}}
-            
+            {{- $cover := .Params.cover | default .Site.Params.banner -}}
             <img data-src="{{ $cover | relURL }}" class="lazyload" alt="{{ .Title }}">
           </div>
 
