@@ -16,3 +16,4 @@ title: "友链"
 
 ## 小伙伴们
 {{< friendsLink >}}
+{{< /friendsLink >}}
