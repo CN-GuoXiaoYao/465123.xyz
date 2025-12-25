@@ -143,6 +143,7 @@
 <!-- 你的自定义iconfont -->
 <link rel="stylesheet" href="/resource/iconfont/iconfont.css">
    
-<!-- 自定义CSS和JS -->
-<link rel="stylesheet" href="/css/custom.css">
-<script src="/js/toc-float.js" defer></script>
+<!-- 自定义CSS和JS - 带版本号防止缓存 -->
+{{- $version := now.Unix -}}
+<link rel="stylesheet" href="/css/custom.css?v={{ $version }}">
+<script src="/js/toc-float.js?v={{ $version }}" defer></script>
