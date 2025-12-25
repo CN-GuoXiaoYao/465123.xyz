@@ -33,8 +33,17 @@
   // 点击标签展开/收起
   const toggleBtn = tocFloat.querySelector('.toc-toggle-btn');
   if (toggleBtn) {
-    toggleBtn.addEventListener('click', function() {
+    toggleBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
       tocFloat.classList.toggle('expanded');
+    });
+  }
+  
+  // 点击目录内容区域不会关闭
+  const tocContentEl = tocFloat.querySelector('.toc-float-content');
+  if (tocContentEl) {
+    tocContentEl.addEventListener('click', function(e) {
+      e.stopPropagation();
     });
   }
   
@@ -46,7 +55,35 @@
     });
   });
   
-
+  // 点击页面其他地方收起目录
+  document.addEventListener('click', function(e) {
+    if (tocFloat.classList.contains('expanded')) {
+      const isClickInsideToc = tocFloat.contains(e.target);
+      if (!isClickInsideToc) {
+        tocFloat.classList.remove('expanded');
+      }
+    }
+  });
+  
+  // 按ESC键收起目录
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && tocFloat.classList.contains('expanded')) {
+      tocFloat.classList.remove('expanded');
+    }
+  });
+  
+  // 回到顶部功能
+  const backToTop = tocFloat.querySelector('.back-to-top-custom');
+  if (backToTop) {
+    backToTop.addEventListener('click', function(e) {
+      e.stopPropagation();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+  
   // 滚动监听 - 高亮当前章节
   const headings = document.querySelectorAll('.article-entry h1, .article-entry h2, .article-entry h3, .article-entry h4, .article-entry h5, .article-entry h6');
   
