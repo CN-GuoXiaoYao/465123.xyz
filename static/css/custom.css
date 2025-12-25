@@ -515,38 +515,52 @@
     7. 导航栏图标 (RSS/搜索/深浅切换)
    ============================================= */
 
-/* 1. 统一字体设置 */
-#nav-rss-link:before,
-#nav-search-btn:before,
-#nav-sun-btn:before {
-  font-family: "iconfont" !important;
-  font-style: normal;
-  display: inline-block;
-  font-size: 20px; /* 根据需要调整大小 */
+/* 统一图标容器样式，解决位置偏下的问题 */
+.nav-icon {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+  text-decoration: none;
+  cursor: pointer;
+  /* 往上提一点点 */
+  margin-top: -5px; 
 }
 
-/* 2. RSS 图标 (只定义这一个，解决双图标问题) */
+.nav-icon:before {
+  font-family: "iconfont" !important;
+  font-size: 20px;
+  font-style: normal;
+  line-height: 1;
+}
+
+/* RSS 图标 */
 #nav-rss-link:before {
   content: "\e603" !important;
 }
 
-/* 3. 搜索图标 */
+/* 搜索图标 */
 #nav-search-btn:before {
   content: "\e604" !important;
 }
 
-/* 4. 深浅模式逻辑 (解决点击没效果和图标切换) */
-/* 默认(亮色)显示月亮 */
+/* 深浅模式逻辑：初始显示月亮 */
 #nav-sun-btn:before {
   content: "\e8a2" !important; 
 }
 
-/* 当点击后，HTML 变为 [data-theme="dark"]，图标自动变烈日 */
+/* 关键：当 HTML 被 JS 加上 [data-theme="dark"] 属性时，图标切换为太阳 */
 [data-theme="dark"] #nav-sun-btn:before {
   content: "\e601" !important;
 }
 
-/* 5. 动画效果：点击时缩放一下，增加反馈感 */
+/* 隐藏主题原本可能存在的重复图标 */
+#nav-moon-btn, #nav-circle-half-stroke-btn {
+  display: none !important;
+}
+
 .nav-icon:active:before {
   transform: scale(0.8);
 }
