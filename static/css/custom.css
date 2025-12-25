@@ -512,16 +512,20 @@
 }
 
 /* =============================================
-    7. 深浅切换
+    7. 导航栏图标 (RSS/搜索/深浅切换)
    ============================================= */
 
-/* 1. 给所有导航图标指定字体 */
-.nav-icon:before {
+/* 1. 统一字体设置 */
+#nav-rss-link:before,
+#nav-search-btn:before,
+#nav-sun-btn:before {
   font-family: "iconfont" !important;
   font-style: normal;
+  display: inline-block;
+  font-size: 20px; /* 根据需要调整大小 */
 }
 
-/* 2. RSS 图标 */
+/* 2. RSS 图标 (只定义这一个，解决双图标问题) */
 #nav-rss-link:before {
   content: "\e603" !important;
 }
@@ -531,13 +535,18 @@
   content: "\e604" !important;
 }
 
-/* 4. 深浅模式切换图标逻辑 */
-/* 默认显示月亮 */
+/* 4. 深浅模式逻辑 (解决点击没效果和图标切换) */
+/* 默认(亮色)显示月亮 */
 #nav-sun-btn:before {
   content: "\e8a2" !important; 
 }
 
-/* 当主题变为 dark 时，图标变为烈日 */
+/* 当点击后，HTML 变为 [data-theme="dark"]，图标自动变烈日 */
 [data-theme="dark"] #nav-sun-btn:before {
   content: "\e601" !important;
+}
+
+/* 5. 动画效果：点击时缩放一下，增加反馈感 */
+.nav-icon:active:before {
+  transform: scale(0.8);
 }
