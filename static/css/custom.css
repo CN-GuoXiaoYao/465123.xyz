@@ -179,22 +179,35 @@
 }
 
 /* 统一所有社交图标大小 */
-.sidebar-social-icon a, 
-.my-friend-info-box ul li a i.iconfont {
-    width: 32px !important;
-    height: 32px !important;
-    font-size: 22px !important; /* 图标本体大小 */
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    vertical-align: middle;
-    transition: all 0.3s;
+.sidebar-social-icon {
+  width: 36px !important;
+  height: 25px !important;
+  font-size: 20px !important;
+}
+
+/* 强制社交图标容器居中 */
+.sidebar-social {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+  flex-wrap: wrap !important;
 }
 
 /* 页面中间列表的图标间距调整 */
 .my-friend-info-box ul li a {
     text-decoration: none !important;
     margin-right: 5px;
+}
+
+.my-friend-info-box ul li a i.iconfont {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 22px !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    transition: all 0.3s;
 }
 
 /* ============================================
