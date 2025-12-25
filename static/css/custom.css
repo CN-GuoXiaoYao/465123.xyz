@@ -120,15 +120,18 @@
    2. 用你的iconfont覆盖主题图标
    ============================================ */
 
-/* 顶部导航按钮 - 全部用iconfont */
+/* 顶部导航按钮 - 全部用iconfont，加大一点 */
 #main-nav-toggle:before,
 #nav-rss-link:before,
 #nav-search-btn:before,
-#nav-sun-btn:before {
+#nav-sun-btn:before,
+#nav-moon-btn:before,
+#nav-circle-half-stroke-btn:before {
   font-family: "iconfont" !important;
+  font-size: 22px !important;  /* 从20px加大到22px */
 }
 
-/* 菜单按钮（手机） - 保持主题默认隐藏 */
+/* 菜单按钮（手机） */
 #main-nav-toggle:before {
   content: "\e602" !important;
 }
@@ -143,21 +146,24 @@
   content: "\e604" !important;
 }
 
-/* 深浅模式切换 - 初始显示月亮（亮色模式） */
+/* 深浅模式切换 - 月亮（亮色模式） */
 #nav-sun-btn:before {
-  content: "\e8a2" !important;  /* 月亮图标 */
-  font-weight: normal !important;
+  content: "\e8a2" !important;
 }
 
-/* 暗色模式时显示太阳 */
+/* 深浅模式切换 - 太阳（暗色模式时显示） */
 [data-theme="dark"] #nav-sun-btn:before {
-  content: "\e601" !important;  /* 太阳图标 */
+  content: "\e601" !important;
 }
 
-/* 隐藏主题的其他切换按钮 */
-#nav-moon-btn,
-#nav-circle-half-stroke-btn {
-  display: none !important;
+/* 月亮按钮（主题会动态切换ID） */
+#nav-moon-btn:before {
+  content: "\e8a2" !important;
+}
+
+/* 半圆按钮（自动模式 - 不删除，只改图标） */
+#nav-circle-half-stroke-btn:before {
+  content: "\e8a2" !important;  /* 或者用其他图标 */
 }
 
 /* 社交图标 - 用你的iconfont */
