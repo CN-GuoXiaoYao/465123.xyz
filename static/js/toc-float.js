@@ -1,4 +1,4 @@
-// 浮动标签式TOC + 回到顶部
+// 浮动标签式TOC + 回到顶部 - 用iconfont箭头
 (function() {
   // 检查是否在文章页
   const isPostPage = document.body.classList.contains('post-type') || 
@@ -16,13 +16,16 @@
     return;
   }
   
-  // 创建浮动TOC容器 - 标签式
+  // 创建浮动TOC容器 - 用iconfont左右箭头
   const tocFloat = document.createElement('div');
   tocFloat.className = 'toc-float-container';
   tocFloat.innerHTML = `
-    <div class="toc-toggle-btn">目录</div>
+    <div class="toc-toggle-btn"></div>
     <div class="toc-float-content">
-      <h3>目录</h3>
+      <h3>
+        目录
+        <span class="toc-close-btn"></span>
+      </h3>
       ${tocContent.innerHTML}
     </div>
     <div class="back-to-top-custom"></div>
@@ -36,6 +39,15 @@
     toggleBtn.addEventListener('click', function(e) {
       e.stopPropagation();
       tocFloat.classList.toggle('expanded');
+    });
+  }
+  
+  // 点击关闭按钮收起
+  const closeBtn = tocFloat.querySelector('.toc-close-btn');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      tocFloat.classList.remove('expanded');
     });
   }
   
