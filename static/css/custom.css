@@ -178,15 +178,14 @@
   content: "\e606" !important;  /* bilibili */
 }
 
-/* 侧边栏社交图标统一大小和居中 */
+/* 侧边栏社交图标居中 */
 .sidebar-social {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
-  width: 100% !important;
-  flex-wrap: wrap !important;
-  gap: 0 !important;
+  width: 70% !important;
   margin: 0 auto !important;
+  flex-wrap: wrap !important;
 }
 
 .sidebar-social-icon {
@@ -196,7 +195,6 @@
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
-  margin: 0 !important;
 }
 
 /* 页面中间列表的图标间距调整 */
@@ -273,6 +271,7 @@
   transition: all 0.3s ease;
   writing-mode: vertical-rl;
   text-orientation: mixed;
+  user-select: none;
 }
 
 .toc-toggle-btn:hover {
@@ -380,7 +379,7 @@
   border-radius: 8px 0 0 8px;
   box-shadow: -2px 2px 8px rgba(0,0,0,0.2);
   transition: all 0.3s ease;
-  font-family: "iconfont" !important;
+  user-select: none;
 }
 
 .back-to-top-custom:hover {
@@ -391,6 +390,7 @@
 .back-to-top-custom::before {
   content: "↑";
   font-size: 24px;
+  font-family: Arial, sans-serif;
 }
 
 @media (max-width: 768px) {
@@ -415,8 +415,8 @@
   }
 }
 
-/* 隐藏主题原本的回到顶部按钮 */
-#back-to-top {
+/* 隐藏主题原本的回到顶部按钮（太极） */
+.sidebar-top {
   display: none !important;
 }
 
