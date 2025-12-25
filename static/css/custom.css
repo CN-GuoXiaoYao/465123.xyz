@@ -251,6 +251,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  align-items: flex-end;
 }
 
 /* TOC标签按钮 - 用左右箭头 */
