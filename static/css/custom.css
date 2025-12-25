@@ -33,7 +33,7 @@
   background: var(--color-wrap);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -110,7 +110,7 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 16px;
   }
-
+  
   .reimu-grid-cover {
     height: 140px;
   }
@@ -124,44 +124,38 @@
 #main-nav-toggle:before,
 #nav-rss-link:before,
 #nav-search-btn:before,
-#nav-sun-btn:before,
-#nav-moon-btn:before {
+#nav-sun-btn:before {
   font-family: "iconfont" !important;
 }
 
-/* 菜单按钮（手机） */
+/* 菜单按钮（手机） - 保持主题默认隐藏 */
 #main-nav-toggle:before {
   content: "\e602" !important;
-  /* 列表 */
 }
 
 /* RSS按钮 */
 #nav-rss-link:before {
   content: "\e603" !important;
-  /* RSS */
 }
 
 /* 搜索按钮 */
 #nav-search-btn:before {
   content: "\e604" !important;
-  /* 搜索 */
 }
 
-/* 太阳（亮色模式） */
+/* 深浅模式切换 - 初始显示月亮（亮色模式） */
 #nav-sun-btn:before {
-  content: "\e601" !important;
-  /* 烈日 */
+  content: "\e8a2" !important;  /* 月亮图标 */
   font-weight: normal !important;
 }
 
-/* 月亮（暗色模式） */
-#nav-moon-btn:before {
-  content: "\e8a2" !important;
-  /* 月亮 */
-  font-weight: normal !important;
+/* 暗色模式时显示太阳 */
+[data-theme="dark"] #nav-sun-btn:before {
+  content: "\e601" !important;  /* 太阳图标 */
 }
 
-/* 隐藏半圆按钮（自动模式） */
+/* 隐藏主题的其他切换按钮 */
+#nav-moon-btn,
 #nav-circle-half-stroke-btn {
   display: none !important;
 }
@@ -169,22 +163,18 @@
 /* 社交图标 - 用你的iconfont */
 .icon-email:before {
   content: "\e856" !important;
-  /* email-fill */
 }
 
 .icon-github:before {
   content: "\e607" !important;
-  /* githublogo */
 }
 
 .icon-youtube:before {
   content: "\e84b" !important;
-  /* youtube */
 }
 
 .icon-bilibili:before {
   content: "\e606" !important;
-  /* bilibili */
 }
 
 /* 侧边栏社交图标居中 */
@@ -208,19 +198,19 @@
 
 /* 页面中间列表的图标间距调整 */
 .my-friend-info-box ul li a {
-  text-decoration: none !important;
-  margin-right: 5px;
+    text-decoration: none !important;
+    margin-right: 5px;
 }
 
 .my-friend-info-box ul li a i.iconfont {
-  width: 32px !important;
-  height: 32px !important;
-  font-size: 22px !important;
-  display: inline-flex !important;
-  align-items: center;
-  justify-content: center;
-  vertical-align: middle;
-  transition: all 0.3s;
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 22px !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    transition: all 0.3s;
 }
 
 /* ============================================
@@ -260,10 +250,9 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  align-items: flex-end;
 }
 
-/* TOC标签按钮 - 用左右箭头 */
+/* TOC标签按钮 - 用左箭头 */
 .toc-toggle-btn {
   position: relative;
   width: 60px;
@@ -277,15 +266,14 @@
   font-size: 20px;
   font-weight: 600;
   border-radius: 8px 0 0 8px;
-  box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: -2px 2px 8px rgba(0,0,0,0.2);
   transition: width 0.3s ease, background 0.3s ease;
   user-select: none;
   font-family: "iconfont" !important;
 }
 
 .toc-toggle-btn::before {
-  content: "\e605";
-  /* 左箭头 */
+  content: "\e605";  /* 左箭头 */
 }
 
 .toc-toggle-btn:hover {
@@ -303,7 +291,7 @@
   max-height: 70vh;
   background: var(--color-wrap);
   border-radius: 12px 0 0 12px;
-  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+  box-shadow: -4px 0 20px rgba(0,0,0,0.15);
   overflow-y: auto;
   padding: 20px;
   transition: right 0.3s ease;
@@ -345,8 +333,7 @@
 }
 
 .toc-close-btn::before {
-  content: "\e608";
-  /* 右箭头 */
+  content: "\e608";  /* 右箭头 */
 }
 
 .toc-close-btn:hover {
@@ -383,7 +370,7 @@
   border-left-color: var(--red-1);
 }
 
-.toc-float-content .active>a {
+.toc-float-content .active > a {
   color: var(--red-1);
   background: var(--red-6);
   font-weight: 600;
@@ -424,10 +411,9 @@
   justify-content: center;
   font-size: 20px;
   border-radius: 8px 0 0 8px;
-  box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: -2px 2px 8px rgba(0,0,0,0.2);
   transition: width 0.3s ease, background 0.3s ease;
   user-select: none;
-  font-family: "iconfont" !important;
 }
 
 .back-to-top-custom:hover {
@@ -436,7 +422,9 @@
 }
 
 .back-to-top-custom::before {
-  content: "\e60b";
+  content: "↑";
+  font-size: 24px;
+  font-family: Arial, sans-serif;
 }
 
 @media (max-width: 768px) {
@@ -446,7 +434,7 @@
     right: 10px;
     transform: none;
   }
-
+  
   .toc-float-content {
     right: -300px;
     top: auto;
@@ -455,7 +443,7 @@
     max-width: calc(100vw - 80px);
     width: 280px;
   }
-
+  
   .toc-float-container.expanded .toc-float-content {
     right: 10px;
   }
@@ -471,7 +459,7 @@
    ============================================ */
 
 [data-theme="dark"] .reimu-grid-item {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
 [data-theme="dark"] .reimu-grid-item:hover {
@@ -479,7 +467,7 @@
 }
 
 [data-theme="dark"] .toc-float-content {
-  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
+  box-shadow: -4px 0 20px rgba(0,0,0,0.5);
 }
 
 /* =============================================
@@ -488,79 +476,23 @@
 
 /* 友链页本站信息美化 */
 .my-friend-info-box {
-  background: var(--color-wrap) !important;
-  padding: 25px !important;
-  border-radius: 12px !important;
-  margin-bottom: 40px !important;
-  line-height: 1.8 !important;
-  /* 让文字散开 */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
-  border-left: 5px solid var(--red-1) !important;
-  /* 加入红条装饰 */
+    background: var(--color-wrap) !important;
+    padding: 25px !important;
+    border-radius: 12px !important;
+    margin-bottom: 40px !important;
+    line-height: 1.8 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+    border-left: 5px solid var(--red-1) !important;
 }
 
 /* 让每行信息都有间距 */
-.my-friend-info-box p,
+.my-friend-info-box p, 
 .my-friend-info-box div {
-  margin-bottom: 12px !important;
+    margin-bottom: 12px !important;
 }
 
 /* 让"名称："这类加粗文字颜色好看点 */
 .my-friend-info-box strong {
-  color: var(--red-1) !important;
-  margin-right: 8px !important;
-}
-
-/* =============================================
-    7. 导航栏图标 (RSS/搜索/深浅切换)
-   ============================================= */
-
-/* 统一图标容器样式，解决位置偏下的问题 */
-.nav-icon {
-  display: inline-flex !important;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  vertical-align: middle;
-  text-decoration: none;
-  cursor: pointer;
-  /* 往上提一点点 */
-  margin-top: -5px; 
-}
-
-.nav-icon:before {
-  font-family: "iconfont" !important;
-  font-size: 20px;
-  font-style: normal;
-  line-height: 1;
-}
-
-/* RSS 图标 */
-#nav-rss-link:before {
-  content: "\e603" !important;
-}
-
-/* 搜索图标 */
-#nav-search-btn:before {
-  content: "\e604" !important;
-}
-
-/* 深浅模式逻辑：初始显示月亮 */
-#nav-sun-btn:before {
-  content: "\e8a2" !important; 
-}
-
-/* 关键：当 HTML 被 JS 加上 [data-theme="dark"] 属性时，图标切换为太阳 */
-[data-theme="dark"] #nav-sun-btn:before {
-  content: "\e601" !important;
-}
-
-/* 隐藏主题原本可能存在的重复图标 */
-#nav-moon-btn, #nav-circle-half-stroke-btn {
-  display: none !important;
-}
-
-.nav-icon:active:before {
-  transform: scale(0.8);
+    color: var(--red-1) !important;
+    margin-right: 8px !important;
 }
