@@ -416,6 +416,7 @@
   box-shadow: -2px 2px 8px rgba(0,0,0,0.2);
   transition: width 0.3s ease, background 0.3s ease;
   user-select: none;
+  font-family: "iconfont" !important;
 }
 
 .back-to-top-custom:hover {
