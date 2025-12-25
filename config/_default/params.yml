@@ -105,7 +105,7 @@ icon_font: 5095250
 fontawesome: true
 
 dark_mode:
-  enable: auto # 自动跟随系统
+  enable: true # 自动跟随系统
 
 ########################################
 # Markdown Display
