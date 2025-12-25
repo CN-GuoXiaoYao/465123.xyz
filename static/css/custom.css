@@ -424,9 +424,7 @@
 }
 
 .back-to-top-custom::before {
-  content: "↑";
-  font-size: 24px;
-  font-family: Arial, sans-serif;
+  content: "\e60b";
 }
 
 @media (max-width: 768px) {
