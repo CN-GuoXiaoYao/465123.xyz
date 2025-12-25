@@ -515,26 +515,29 @@
     7. 深浅切换
    ============================================= */
 
-/* 基础图标样式 */
-.mode-icon {
+/* 1. 给所有导航图标指定字体 */
+.nav-icon:before {
   font-family: "iconfont" !important;
   font-style: normal;
-  display: inline-block;
-  transition: transform 0.3s ease-in-out;
 }
 
-/* 默认（浅色模式）：显示月亮 */
-.mode-icon:before {
-  content: "\e8a2";
+/* 2. RSS 图标 */
+#nav-rss-link:before {
+  content: "\e603" !important;
 }
 
-/* 当切换到深色模式时：显示烈日 */
-/* 注意：Reimu 主题通常在 html 标签上标记 data-theme="dark" */
-[data-theme="dark"] .mode-icon:before {
-  content: "\e601";
+/* 3. 搜索图标 */
+#nav-search-btn:before {
+  content: "\e604" !important;
 }
 
-/* 点击时的交互效果（可选） */
-#nav-sun-link:active .mode-icon {
-  transform: scale(0.8) rotate(30deg);
+/* 4. 深浅模式切换图标逻辑 */
+/* 默认显示月亮 */
+#nav-sun-btn:before {
+  content: "\e8a2" !important; 
+}
+
+/* 当主题变为 dark 时，图标变为烈日 */
+[data-theme="dark"] #nav-sun-btn:before {
+  content: "\e601" !important;
 }

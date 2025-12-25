@@ -24,24 +24,17 @@
     {{- end -}}
     <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
   </nav>
+  
   <nav id="sub-nav" aria-label="Secondary navigation">
     {{- with .OutputFormats.Get "rss" -}}
     <a id="nav-rss-link" class="nav-icon" href="{{ .Permalink | relURL }}" title="{{ i18n " rss_feed" }}"
-      aria-label="{{ i18n " rss_feed" }}" target="_blank">
-      <i class="icon" style="font-style: normal;">&#xe603;</i>
-    </a>
+      target="_blank"></a>
     {{- end -}}
 
-    <a id="nav-sun-link" class="nav-icon" title="{{ i18n " night_mode" }}" aria-label="{{ i18n " night_mode" }}"
-      role="button">
-      <i class="icon mode-icon"></i>
-    </a>
+    <a id="nav-sun-btn" class="nav-icon" title="{{ i18n " night_mode" }}" role="button"></a>
 
     {{- if .Site.Params.algolia_search.enable -}}
-    <a id="nav-search-btn" class="nav-icon popup-trigger" title="{{ i18n " search" }}" aria-label="{{ i18n " search"
-      }}">
-      <i class="icon" style="font-style: normal;">&#xe604;</i>
-    </a>
+    <a id="nav-search-btn" class="nav-icon popup-trigger" title="{{ i18n " search" }}"></a>
     {{- end -}}
   </nav>
 
